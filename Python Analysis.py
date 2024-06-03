@@ -40,3 +40,23 @@ print(detailed_orders.head(10))
 sb.lineplot(detailed_orders, x = "date", y = "total", hue = "category")
 
 # %%
+detailed_orders['date'] = pd.to_datetime(detailed_orders['date'])
+detailed_orders['month'] = detailed_orders['date'].dt.to_period('M')
+
+monthly_total = detailed_orders.groupby('month')['total'].sum().reset_index()
+print("Monthly Totals:")
+print(monthly_total)
+
+# %%
+sb.set(style="whitegrid")
+
+sb.lineplot(x=monthly_total['month'].astype(str), y = monthly_total['total'],marker = 'o')
+
+mp.title("Total by Month")
+mp.xlabel("Month")
+mp.ylabel("Total")
+mp.xticks(rotation=45)
+mp.grid(True)
+
+mp.show()
+# %%
