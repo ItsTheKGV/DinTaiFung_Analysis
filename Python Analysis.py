@@ -59,4 +59,11 @@ mp.xticks(rotation=45)
 mp.grid(True)
 
 mp.show()
+
+# %%
+filename = "Combined_Data.csv"
+file_path = os.path.join("B:\Microsoft VS Code\Project Locations\DinTaiFung_Analysis\Processed Data", filename)
+
+detailed_orders.to_csv(file_path, index=False)
+print(f'DataFrame saved to {file_path}')
 # %%
