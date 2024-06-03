@@ -28,3 +28,15 @@ print(detailed_orders.head(10))
 
 # %%
 sb.lineplot(order, x = "date", y = "total")
+
+# %%
+detailed_orders = detailed_orders.merge(order, how = "inner", on = "order_id")
+
+# %%
+detailed_orders = detailed_orders.drop(columns=["date_y"])
+print(detailed_orders.head(10))
+
+# %%
+sb.lineplot(detailed_orders, x = "date", y = "total", hue = "category")
+
+# %%
